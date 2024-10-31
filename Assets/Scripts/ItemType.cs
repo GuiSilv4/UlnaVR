@@ -1,0 +1,6 @@
+public enum ItemType
+{
+    Amulet, Axe, Boots, Bow, ChestArmor, Crossbow, Dagger, Focus, Glaive, Gloves,
+    Helm, Mace, Pants, Polearm, Quarterstaff, Ring, Scythe, Shield, Staff, Sword,
+    Totem, TwoHandedAxe, TwoHandedMace, TwoHandedScythe, TwoHandedSword, Wand
+}
