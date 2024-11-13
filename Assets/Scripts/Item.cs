@@ -24,6 +24,8 @@ public class Item : ScriptableObject
     public bool Tradable { get; set; } = true;
     public int ItemValue { get; set; } // Pode representar dano de arma ou defesa de armadura
     public int Upgrades { get; set; } = 1; // Inicia com 1 upgrade
+    public float Weight { get; set; }  // Peso do item
+
     
     // Construtor para criar um item
     public Item(ItemType itemType, int itemPower, string itemName, Sprite itemImage, int sellValue, bool tradable, int itemValue, int requiredLevel)
@@ -38,6 +40,7 @@ public class Item : ScriptableObject
         ItemValue = itemValue;
         RequiredLevel = requiredLevel;
         ClassRequirements = new List<CharacterClass>();
+        Weight = 10.0f;
         UpdateRarity(); // Atualiza a raridade com base na contagem de afixos
 
         Durability = 100; // Valor inicial padrão

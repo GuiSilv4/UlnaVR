@@ -18,6 +18,11 @@ public class Player : MonoBehaviour
     public float WeaponDamage { get; set; }
     public float SkillFighting { get; set; } 
     public float OtherBonus { get; set; }
+    public Inventory Inventory { get; private set; }
+    public float MaxCarryWeight { get; set; } = 100f;  // Capacidade máxima de carga em peso
+    public float CurrentCarryWeight { get; private set; } = 0f;  // Peso atual carregado
+
+
 
     public float HitDamage
     {
@@ -59,6 +64,8 @@ public class Player : MonoBehaviour
     {
         Name = name;
         PlayerClass = playerClass;
+        Inventory = new Inventory();
+
         Level = 1;
         HitPoints = 100;
         Resource = 100;
@@ -70,4 +77,28 @@ public class Player : MonoBehaviour
     }
 
     // Métodos e outras funcionalidades podem ser adicionados aqui
+    public bool AddItem(Item item)
+    {
+        if (CurrentCarryWeight + item.Weight > MaxCarryWeight)
+        {
+            Debug.Log("Você está carregando muito peso!");
+            return false;
+        }
+
+        Inventory.AddItem(item);
+        CurrentCarryWeight += item.Weight;
+        return true;
+    }
+
+    public void RemoveItem(Item item)
+    {
+        if (Inventory.RemoveItem(item))
+        {
+            CurrentCarryWeight -= item.Weight;
+        }
+    }
+
+
 }
+
+
