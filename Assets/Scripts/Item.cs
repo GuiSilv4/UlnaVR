@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class Item : MonoBehaviour
+public class Item : ScriptableObject
 {
     // Atributos principais
     public ItemType ItemType { get; set; }
@@ -14,6 +14,8 @@ public class Item : MonoBehaviour
     public string ItemName { get; set; }
     public Sprite ItemImage { get; set; }
 
+    public string Name;
+
     public bool IsWeapon {get; private set;}
     
     // Novos Atributos
@@ -24,15 +26,17 @@ public class Item : MonoBehaviour
     public int Upgrades { get; set; } = 1; // Inicia com 1 upgrade
     
     // Construtor para criar um item
-    public Item(ItemType itemType, int itemPower, string itemName, Sprite itemImage, int sellValue, bool tradable, int itemValue)
+    public Item(ItemType itemType, int itemPower, string itemName, Sprite itemImage, int sellValue, bool tradable, int itemValue, int requiredLevel)
     {
         ItemType = itemType;
         ItemPower = itemPower;
         ItemName = itemName;
+        Name = ItemName;
         ItemImage = itemImage;
         SellValue = sellValue;
         Tradable = tradable;
         ItemValue = itemValue;
+        RequiredLevel = requiredLevel;
         ClassRequirements = new List<CharacterClass>();
         UpdateRarity(); // Atualiza a raridade com base na contagem de afixos
 

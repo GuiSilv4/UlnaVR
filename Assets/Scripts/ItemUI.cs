@@ -14,17 +14,17 @@ public class ItemUI : MonoBehaviour
     public Transform affixesContainer;
     public GameObject affixPrefab;
 
-    public void UpdateItemUI(ItemData item)
+    public void UpdateItemUI(Item item)
     {
-        ItemNameText.text = item.itemName;
-        ItemRarityAndTypeText.text = item.itemRarity.ToString() + " " + item.itemType.ToString();
-        ItemPowerText.text = item.itemPower.ToString() + " Item Power";
+        ItemNameText.text = item.ItemName;
+        ItemRarityAndTypeText.text = item.Rarity.ToString() + " " + item.ItemType.ToString();
+        ItemPowerText.text = item.ItemPower.ToString() + " Item Power";
         
-        string damageOrArmorSuffix = true ? "Damage" : "Armor";
-        ItemValueText.text = item.itemValue.ToString() + " " + damageOrArmorSuffix;
-        ItemSellValueText.text = "Sell Value " + item.sellValue.ToString();
-        ItemDurabilityText.text = "Durability "  + item.durability.ToString() + "/100";
-        ItemReqLevelText.text = "Req. Level " + item.requiredLevel.ToString();
+        string damageOrArmorSuffix = item.IsWeapon ? "Damage" : "Armor";
+        ItemValueText.text = item.ItemValue.ToString() + " " + damageOrArmorSuffix;
+        ItemSellValueText.text = "Sell Value " + item.SellValue.ToString();
+        ItemDurabilityText.text = "Durability "  + item.Durability.ToString() + "/100";
+        ItemReqLevelText.text = "Req. Level " + item.RequiredLevel.ToString();
 
 
         //itemTypeText.text = item.ItemType.ToString();
@@ -43,5 +43,9 @@ public class ItemUI : MonoBehaviour
         //    var affixUI = Instantiate(affixPrefab, affixesContainer);
         //    affixUI.GetComponent<TextMeshProUGUI>().text = $"{affix.Name}: {affix.Description}";
        // }
+    }
+
+    public void UpdateBackgroundColor(Color color) {
+        this.GetComponent<Image>().color = color;
     }
 }

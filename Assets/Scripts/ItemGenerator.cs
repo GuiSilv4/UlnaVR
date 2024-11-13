@@ -19,7 +19,7 @@ public class ItemGenerator : MonoBehaviour
         ItemRarity itemRarity = DetermineItemRarity();
 
         // Instancia o novo item usando o construtor
-        Item newItem = new Item(itemType, itemPower, itemName, null, 0, true, 0); // Imagem nula como placeholder
+        Item newItem = new Item(itemType, itemPower, itemName, null, 0, true, 0, 0); // Imagem nula como placeholder
 
         // Adiciona afixos aleatórios com base na raridade do item
         AddRandomAffixes(newItem, itemRarity);
