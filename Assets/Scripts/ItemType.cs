@@ -4,3 +4,14 @@ public enum ItemType
     Helm, Mace, Pants, Polearm, Quarterstaff, Ring, Scythe, Shield, Staff, Sword,
     Totem, TwoHandedAxe, TwoHandedMace, TwoHandedScythe, TwoHandedSword, Wand
 }
+
+public enum EquipmentSlot
+{
+    Helmet,
+    Chest,
+    Gloves,
+    Boots,
+    Pants,
+    Amulet,
+    Ring
+}

@@ -1,4 +1,4 @@
 public enum CharacterClass
 {
-    Knight, Sorcerer, Ranger, Necromancer, Druid, Assassin
+    Knight, Sorcerer, Ranger, Necromancer, Druid, Assassin, GameManager
 }

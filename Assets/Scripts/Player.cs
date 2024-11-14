@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
@@ -21,8 +22,7 @@ public class Player : MonoBehaviour
     public Inventory Inventory { get; private set; }
     public float MaxCarryWeight { get; set; } = 100f;  // Capacidade máxima de carga em peso
     public float CurrentCarryWeight { get; private set; } = 0f;  // Peso atual carregado
-
-
+    public Dictionary<EquipmentSlot, Item> EquippedItems { get; private set; } = new Dictionary<EquipmentSlot, Item>();
 
     public float HitDamage
     {
@@ -98,6 +98,44 @@ public class Player : MonoBehaviour
         }
     }
 
+    // Método para equipar um item
+    public bool EquipItem(Item item)
+    {
+        // Validação do tipo de item e slot
+        EquipmentSlot slot = item.GetEquipmentSlot(); // Presumindo que Item tem um método para definir o slot adequado.
+        if (EquippedItems.ContainsKey(slot))
+        {
+            Debug.Log("Slot já ocupado.");
+            return false;
+        }
+
+        EquippedItems[slot] = item;
+        ApplyItemAttributes(item);
+        return true;
+    }
+    
+     // Método para aplicar os atributos do item ao jogador
+    private void ApplyItemAttributes(Item item)
+    {
+        //Strength += item.StrengthBonus; // Exemplo
+        //Dexterity += item.DexterityBonus; // Outros atributos podem ser adicionados
+    }
+
+    // Método para desequipar um item
+    public void UnequipItem(EquipmentSlot slot)
+    {
+        if (EquippedItems.TryGetValue(slot, out Item item))
+        {
+            RemoveItemAttributes(item);
+            EquippedItems.Remove(slot);
+        }
+    }
+
+    private void RemoveItemAttributes(Item item)
+    {
+        //Strength -= item.StrengthBonus;
+        //Dexterity -= item.DexterityBonus;
+    }
 
 }
 

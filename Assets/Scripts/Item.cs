@@ -26,9 +26,11 @@ public class Item : ScriptableObject
     public int Upgrades { get; set; } = 1; // Inicia com 1 upgrade
     public float Weight { get; set; }  // Peso do item
 
+    public EquipmentSlot SlotType { get; private set; }
+
     
     // Construtor para criar um item
-    public Item(ItemType itemType, int itemPower, string itemName, Sprite itemImage, int sellValue, bool tradable, int itemValue, int requiredLevel)
+    public Item(ItemType itemType, int itemPower, string itemName, Sprite itemImage, int sellValue, bool tradable, int itemValue, int requiredLevel, EquipmentSlot slotType = EquipmentSlot.Helmet)
     {
         ItemType = itemType;
         ItemPower = itemPower;
@@ -41,6 +43,7 @@ public class Item : ScriptableObject
         RequiredLevel = requiredLevel;
         ClassRequirements = new List<CharacterClass>();
         Weight = 10.0f;
+        SlotType = slotType;
         UpdateRarity(); // Atualiza a raridade com base na contagem de afixos
 
         Durability = 100; // Valor inicial padrão
@@ -48,6 +51,11 @@ public class Item : ScriptableObject
         UpdateIsWeapon();
     }
 
+    // Método para retornar o slot do item
+    public EquipmentSlot GetEquipmentSlot()
+    {
+        return SlotType;
+    }
     public void UpdateIsWeapon() {
             if(this.ItemType == ItemType.Axe || this.ItemType == ItemType.Bow
             || this.ItemType == ItemType.Crossbow || this.ItemType == ItemType.Dagger
